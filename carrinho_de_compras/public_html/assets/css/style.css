@@ -1,0 +1,385 @@
+/* RESETS */
+* {
+    /* Seletor universal - pega tudo mesmo */
+    margin: 0;
+    /* Margens definidas como 0 para tudo */
+    padding: 0;
+    /* Padding (margem interna) definido como 0 para tudo */
+    box-sizing: border-box;
+    /* As medidas dos elementos (caixas ou boxes) considera a borda e inclui o padding */
+    scroll-behavior: smooth;
+    /* Quando há links para áreas na mesma página, o scroll se dá de maneira suave */
+}
+
+main {
+    padding: 0 !important;
+    /* Por padrão o Bootstrap põe 15 px de padding na tag main, por isso estamos garantindo que padding será 0 (por causa do carrossel) */
+    margin-top: 55px;
+    /* A altura do header é 55 px, por isso estamos aplicando o margin top na tag main */
+}
+
+ul {
+    list-style: none;
+    /* Removendo bullets da lista não ordenada (unordered list) */
+}
+
+/* Seleciona os links */
+a,
+/* Links ativos */
+a:active,
+/* Links quando passamos o mouse sobre eles */
+a:hover,
+/* E links já visitados */
+a:visited {
+    text-decoration: none;
+    /* Remove o underline padrão */
+}
+
+a:not(.btn) {
+    color: inherit;
+}
+
+.table td,
+.table th {
+    vertical-align: middle !important;
+}
+
+/* HOME */
+
+/* Banners  / Carousel */
+.carousel-item {
+    /* Seletor por classe do slide do carrossel. Seletor genérico, pega TODOS e CADA item do carrossel, para aplicarmos propriedades em comum entre todos eles */
+    background-attachment: fixed;
+    /* Deixa a imagem fixa no scroll (impressão do paralaxe, mas não é paralaxe */
+    background-repeat: no-repeat;
+    /* Caso a imagem seja menor que o container, não se repetirá - como o size é cover, não precisaríamos dela na verdade */
+    background-size: cover;
+    /* Garante que a menor medida da imagem completará o container - pode haver perda de parte da imagem mas não fica espaço vazio, o contrário do contain */
+    background-position: center bottom;
+    /* Centraliza a imagem de fundo */
+    height: calc(50vh - 59px);
+    /* Queremos que o banner ocupe 50% da altura da tela, incluindo o header, que tem 59 px, para isso usamos o calc() */
+}
+
+#banner01 {
+    /* Selecionando um slide específico do carrossel por seu ID, para aplicarmos estilos específicos (a imagem de fundo, no caso) */
+    background-color: #6baabb;
+    /* Cor de fundo, caso a imagem não seja carregada */
+    background-image: url(../img/banner-01.jpg);
+    /* Imagem de fundo (como temos o cover no seletor mais genérico, não precisamos nos preocupar com o tamanho delas */
+}
+
+#banner02 {
+    /* Selecionando um slide específico do carrossel por seu ID, para aplicarmos estilos específicos (a imagem de fundo, no caso) */
+    background-color: #011631;
+    /* Cor de fundo, caso a imagem não seja carregada */
+    background-image: url(../img/banner-02.jpg);
+    /* Imagem de fundo (como temos o cover no seletor mais genérico, não precisamos nos preocupar com o tamanho delas */
+}
+
+#banner03 {
+    /* Selecionando um slide específico do carrossel por seu ID, para aplicarmos estilos específicos (a imagem de fundo, no caso) */
+    background-color: #e5873c;
+    /* Cor de fundo, caso a imagem não seja carregada */
+    background-image: url(../img/banner-03.jpg);
+    /* Imagem de fundo (como temos o cover no seletor mais genérico, não precisamos nos preocupar com o tamanho delas */
+}
+
+#banner04 {
+    /* Selecionando um slide específico do carrossel por seu ID, para aplicarmos estilos específicos (a imagem de fundo, no caso) */
+    background-color: #022240;
+    /* Cor de fundo, caso a imagem não seja carregada */
+    background-image: url(../img/banner-04.png);
+    /* Imagem de fundo (como temos o cover no seletor mais genérico, não precisamos nos preocupar com o tamanho delas */
+}
+
+.carousel-caption,
+/* Legenda do banner, inclui o título e a descrição de cada banner */
+.carousel-indicators,
+/* Indicadores, os tracinhos no bottom do banner */
+[class*="carousel-control-"] {
+    /* Apesar de selecionar classes também, usamos como atributo para pegar de forma mais abrangente - classes que contenham esse trecho de texto, ou seja, pegamos o carousel-control-next e o carousel-control-prev numa tacada só! */
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    /* Incluindo filtro de sombra para dar legibilidade em fundos claros (a diferença desse filtro pro box-shadow é que ele pega as partes vazadas, enquanto o box-shadow é aplicado na box/caixa, no elemento, então não faz curvas nem pega elementos vazados - ou 'furados') */
+}
+
+#carrosselMaisVendidos .carousel-item,
+#carrosselMaisProcurados .carousel-item {
+    height: auto;
+}
+
+.carousel-indicators.indicators-mais-vendidos,
+.carousel-indicators.indicators-mais-procurados {
+    bottom: -50px !important;
+}
+
+[data-target="#carrosselMaisVendidos"]:not(.active),
+[data-target="#carrosselMaisProcurados"]:not(.active) {
+    background-color: #17a2b85c !important;
+}
+
+#catMaisVendidos .card.promo,
+#catMaisProcurados .card.promo {
+    order: -1;
+    /* Traz os cards com classe promo (nas "vitrines especiais") para as primeiras posições (afinal, o default é 0). Só funciona por que estamos usando flex box */
+}
+
+.card.promo {
+    color: #17a2b8;
+    font-weight: bolder;
+}
+
+.badge.badge-pill.badge-info {
+    position: absolute;
+    /* Faz com que a badge promo se sobreponha ao restante do card (funciona pois o card tem position relative por default) */
+    top: 10px;
+    /* Alinhando 10px abaixo da linha de topo (limite do card) */
+    right: 10px;
+    /* Alinhando 10px para 'dentro' a partir da linha da direita (limite do card) */
+    font-size: 0.9em;
+    /* Definindo que a fonte será 90% do que seria naturalmente */
+    padding: 5px 10px;
+    /* Definindo 'margens internas' de 5px na vertical e 10px na horizontal */
+}
+
+/* Abaixo criamos um pesudo elemento com o conteúdo 'por apenas' para destacarmos as promoções (por isso a classe promo no seletor) */
+.card.promo .preco-vitrine:before {
+    content: 'por apenas ';
+    display: block;
+    color: lightslategray;
+    position: relative;
+    font-weight: lighter;
+    font-size: 0.65em;
+}
+
+.card .card-footer {
+    min-height: 86px;
+    /* Definindo altura mínima para os card-footer de modo que fiquem todos da mesma altura (em promoção ou não) */
+    padding: 16px;
+    /* Definindo um padding para os card-footer*/
+}
+
+/* A seguir, selecionando cards que não estão em promoção, para aplicar um padding top maior, de modo que fiquem alinhados aos que estão em promoção */
+.card:not(.promo) .card-footer {
+    padding-top: 28px;
+}
+
+/* Páginas Internas */
+/* Seletor de topo de página (será utilizado em todas as páginas internas). Ver a parte do carrossel para entender as propriedades de background */
+.topo-pagina {
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 30vh;
+    height: auto;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+    /* Aplicando o filtro de sombra para parecer que a imagem de topo está 'sobre' o resto da página */
+}
+
+.topo-pagina h1,
+.topo-pagina p {
+    color: #fff;
+    /* Quando os 6 algarismos de uma cor hexadecimal se repetem, podemos declarar apenas 3 deles */
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    /* Incluindo filtro de sombra para dar legibilidade em fundos claros (a diferença desse filtro pro box-shadow é que ele pega as partes vazadas, enquanto o box-shadow é aplicado na box/caixa, no elemento, então não faz curvas nem pega elementos vazados - ou 'furados') */
+}
+
+.topo-pagina p {
+    font-size: 1.2em;
+    /* Deixando os textos dos parágrafos dos headers dos topos das páginas 20% maior do que seriam por default (por padrão) */
+    font-weight: bold;
+    /* Aplicando o negrito a esses parágrafos */
+}
+
+/* Produto */
+#topoProduto {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+
+#carrosselProduto {
+    overflow: hidden;
+}
+
+#carrosselProduto img {
+    width: 100%;
+    height: auto;
+}
+
+[data-target="#carrosselProduto"]:not(.active) {
+    background-color: #17a2b85c !important;
+}
+
+i.fas.fa-chevron-down {
+    transition: transform 0.6s ease-in-out;
+}
+
+.btn[aria-expanded="true"] i.fas.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+div[data-parent="#accordionTabsProduto"] .card-body {
+    padding: 20px;
+}
+
+/* Página de Categoria */
+#topoCatExemplo {
+    background-color: #6baabb;
+    background-image: url(../img/banner-01.jpg);
+}
+
+.vitrine-categoria .card:nth-child(n + 7) {
+    order: 3;
+    /* Definindo que todos os cards a partir do 7o (7 + n) terão order 3. Isso para incluirmos um banner depois do 6o usando a propriedade order */
+}
+
+#bannerDestaque01 {
+    order: 2;
+    /* Ficará posicionado após o 6o card, independentemente de onde for declarado */
+    flex: 1 1 100%;
+    background-color: #6baabb;
+    color: #fff;
+    min-height: 120px;
+    /* Quando os 6 algarismos de uma cor hexadecimal se repetem, podemos declarar apenas 3 deles */
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    /* Incluindo filtro de sombra para dar legibilidade em fundos claros (a diferença desse filtro pro box-shadow é que ele pega as partes vazadas, enquanto o box-shadow é aplicado na box/caixa, no elemento, então não faz curvas nem pega elementos vazados - ou 'furados') */
+    transition: all 0.6s ease-in-out;
+    /* Definindo tempo de animação de transição entre o estado normal e o hover */
+}
+
+#bannerDestaque01:hover {
+    background-color: #fff;
+    color: #6baabb;
+}
+
+/* Página de Contato */
+#topoContato {
+    background-color: #6baabb;
+    background-image: url(../img/banner-01.jpg);
+}
+
+.dados-contato ul li {
+    font-weight: bolder;
+    font-size: 1.1em;
+    height: 32px;
+}
+
+i.fa-phone {
+    transform: rotate(90deg);
+}
+
+/* Mapa incorporado do Google Maps */
+#localizacao iframe {
+    width: 100%;
+}
+
+.horario p {
+    font-weight: normal;
+}
+
+.redes-sociais i {
+    font-size: 1.85em;
+    color: #468ca0;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    transition: transform 0.8s ease-in-out;
+}
+
+.redes-sociais i:hover {
+    transform: rotateY(360deg)
+}
+
+/* Carrinho */
+#topoCarrinho {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+#carrinhoForm > p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.cart-qtd {
+    font-size: .85em;
+}
+
+.cart-size {
+    font-weight: bolder;
+}
+
+.cart-qtd:after {
+    font-family: "Font Awesome 5 Pro";
+    content: ' \f00d';
+    font-weight: lighter;
+    font-size: .85em;
+}
+
+.cart-subtotal-price {
+    font-weight: bolder;
+}
+
+/* Pagamento */
+#topoPagamento {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+
+.checkout-qtd:after {
+    font-family: "Font Awesome 5 Pro";
+    content: ' \f00d';
+    font-weight: lighter;
+    font-size: .85em;
+}
+
+/* Pagamento Confirmado */
+#topoPagamentoConfirmado {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+#pagamentoConfirmado .fa-gifts {
+    font-size: 6em;
+}
+#pagamentoConfirmado p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+/* Sobre */
+#topoSobre {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+/* 404 */
+#topoErro {
+    background-color: #e5873c;
+    background-image: url(../img/banner-01.jpg);
+}
+#erro404 p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#erro404 .fa-bug {
+    font-size: 6em;
+}
+/* Footer */
+footer .redes-sociais i {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+@media only screen and (min-width: 576px) {
+
+    /* Cards (Vitrines de Produtos) */
+    .card {
+        flex: 1 0 30%;
+        /* Para a página de categoria, onde não usamos mais o card-deck, permite que os produtos ocupem apenas os 30% da row */
+    }
+
+    .topo-pagina {
+        height: 20vh;
+        /* Aplicando altura ao topo da página (em telas com largura a partir de 576px) */
+    }
+
+    #formularioPagamento .sticky-top,
+    #dadosPedido .sticky-top {
+        top: 80px;
+    }
+}
